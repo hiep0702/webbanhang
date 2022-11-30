@@ -5,7 +5,6 @@
 	<div class="col-sm-5">
 		<div class="view-product">
 			<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="" />
-			<h3>ZOOM</h3>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
 			  <!-- Controls -->
@@ -31,7 +30,7 @@
 				{{csrf_field()}}
 			<span>
 				<span>{{number_format($value->product_price).' '.'VNĐ'}}</span>
-				<label>Quantity:</label>
+				<label>Số lượng:</label>
 				<input name="qty" type="number" min="1" value="1" />
 				<input name="productid_hidden" type="hidden"  value="{{$value->product_id}}" />
 				<button type="submit" class="btn btn-fefault cart">
@@ -41,7 +40,6 @@
 			</span>
 			</form>
 			<p><b>Tình trạng:</b> Còn hàng</p>
-			<p><b>Điều kiện:</b> Mới 100%</p>
 			<p><b>Thương hiệu:</b>{{$value->brand_name}}</p>
 			<p><b>Danh mục:</b>{{$value->category_name}}</p>
 			<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
@@ -87,9 +85,7 @@
 						</div>
 					</div>
 				</div>
-				@endforeach
-				
-				
+				@endforeach		
 			</div>
 		
 			

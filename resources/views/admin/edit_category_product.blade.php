@@ -23,11 +23,17 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên danh mục</label><br>
-                                <input type="text" value="{{$edit_value->category_name}}" name="category_product_name" class="form-control" id="exampleInputEmail1" style="width: 100%;" >
+                                <input type="text" value="{{$edit_value->category_name}}" name="category_name" class="form-control" id="exampleInputEmail1" style="width: 100%;" >
+                                @error('category_name')
+                                     <span style="color: red; width: 100%">{{ $message }}</span>
+                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mô tả danh mục</label><br>
-                                <textarea name="category_product_desc" class="form-control" id="exampleInputPassword1" style="width: 100%;">{{$edit_value->category_desc}}</textarea>
+                                <textarea name="category_desc" class="form-control" id="exampleInputPassword1" style="width: 100%;">{{$edit_value->category_desc}}</textarea>
+                                @error('category_desc')
+                                     <span style="color: red; width: 100%">{{ $message }}</span>
+                                 @enderror
                             </div>
                            
                             

@@ -33,7 +33,6 @@
 						</td>
 						<td class="cart_description">
 							<h4><a href=""></a></h4>
-							<p>Web ID: 1089772</p>
 						</td>
 						<td class="cart_price">
 							<p></p>
@@ -74,7 +73,6 @@
 					<div class="total_area">
 						<ul>
 							<li>Tổng <span></span></li>
-							<li>Thuế <span></span></li>
 							<li>Phí vận chuyển <span>Free</span></li>
 							<li>Thành tiền <span></span></li>
 						</ul>

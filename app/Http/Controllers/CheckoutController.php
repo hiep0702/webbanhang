@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cart;
-use App\Http\Requests;
+use App\Http\Requests\CreateCustomer;
+use App\Http\Requests\LoginCustomer;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -25,12 +26,11 @@ class CheckoutController extends Controller
     {
         $this->AuthLogin();
         $order_by_id = DB::table('tbl_order')
-            ->join('tbl_customers', 'tbl_order.customer_id', '=', 'tbl_customers.customer_id')
-            ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
-            ->join('tbl_order_details', 'tbl_order.order_id', '=', 'tbl_order.order_id')
-            ->select('tbl_order.*', 'tbl_customers.*', 'tbl_shipping.*', 'tbl_order_details.*')->first();
-        $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id);
-        return view('admin_layout')->with('admin.view_order', $manager_order_by_id);
+            ->join('tbl_customers', 'tbl_order.customer_id', 'tbl_customers.customer_id')
+            ->join('tbl_order_details', 'tbl_order.order_id', 'tbl_order_details.order_id')
+            ->select('tbl_order.*', 'tbl_customers.*', 'tbl_order_details.*')
+            ->where('tbl_order.order_id', $orderId)->get();
+        return view('admin.view_order', compact('order_by_id'));
     }
     public function login_checkout()
     {
@@ -38,7 +38,7 @@ class CheckoutController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status', '0')->orderby('brand_id', 'desc')->get();
         return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product);
     }
-    public function add_customer(Request $request)
+    public function add_customer(CreateCustomer $request)
     {
         $data = array();
         $data['customer_name'] = $request->customer_name;
@@ -128,15 +128,17 @@ class CheckoutController extends Controller
         Session::flush();
         return Redirect::to('/login-checkout');
     }
-    public function login_customer(Request $request)
+    public function login_customer(LoginCustomer $request)
     {
-        $email = $request->email_account;
-        $password = md5($request->password_account);
+        $email = $request->customer_email;
+        $password = md5($request->customer_password);
         $result = DB::table('tbl_customers')->where('customer_email', $email)->where('customer_password', $password)->first();
         if ($result) {
             Session::put('customer_id', $result->customer_id);
+            Session::put('message', 'Đăng nhập thành công');
             return Redirect::to('/checkout');
         } else {
+            Session::put('message', 'Email hoặc mật khẩu của bạn không đúng. Vui lòng kiểm tra lại');
             return Redirect::to('/login-checkout');
         }
     }
@@ -145,16 +147,16 @@ class CheckoutController extends Controller
         $this->AuthLogin();
         $all_order = DB::table('tbl_order')
             ->join('tbl_customers', 'tbl_order.customer_id', '=', 'tbl_customers.customer_id')
-            ->select('tbl_order.*', 'tbl_customers.customer_name')->orderby('tbl_order.order_id', 'desc')->get();
+            ->select('tbl_order.*', 'tbl_customers.customer_name')->orderby('tbl_order.order_id', 'desc')->paginate(5);
         $manager_order = view('admin.manager_order')->with('all_order', $all_order);
         return view('admin_layout')->with('admin.manager_order', $manager_order);
     }
 
-    public function delete_order()
+    public function delete_order($order_id)
     {
-        // $this->AuthLogin();
-        // Db::table('tbl_order')->where('order_id',$order_id)->delete();
-        // Session::put('message','Xóa danh mục sản phẩm thành công');
-        // return Redirect::to('admin_layout');
+        $this->AuthLogin();
+        Db::table('tbl_order')->where('order_id', $order_id)->delete();
+        Session::put('message', 'Xóa danh mục sản phẩm thành công');
+        return Redirect::to('manager-order');
     }
 }

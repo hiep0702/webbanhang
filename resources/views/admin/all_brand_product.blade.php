@@ -12,27 +12,18 @@
               echo $message;
               Session::put('message',null);
           }
-
-
       ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Tên thương hiệu</th>
             <th>Hiển thị</th>
-            
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
           @foreach($all_brand_product as $key =>$brand_pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$brand_pro->brand_name}}</td>
             <td><span class="text-ellipsis">
               <?php
@@ -66,17 +57,8 @@
       </table>
     </div>
     <footer class="panel-footer">
-      <div class="row">
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
+      <div style="text-align: center;">
+        {{ $all_brand_product->links() }}
       </div>
     </footer>
   </div>

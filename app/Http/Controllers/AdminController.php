@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -27,7 +28,7 @@ class AdminController extends Controller
         $this->AuthLogin();
         return view('admin.dashboard');
     }
-    public function dashboard(Request $request){
+    public function dashboard(LoginRequest $request){
         $admin_email=$request->admin_email;
         $admin_password=md5($request->admin_password);
 
@@ -37,7 +38,6 @@ class AdminController extends Controller
             Session::put('admin_id',$result->admin_id);
             return Redirect::to('/dashboard');
         }else{
-            Session::put('message','Tài khoản hoặc mật khẩu bị sai,yêu cầu nhập lại');
             return Redirect::to('/admin');
         }
     }

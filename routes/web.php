@@ -27,7 +27,7 @@ Route::post('/update-info/{info_id}','App\Http\Controllers\ContactController@upd
 
 
 // Danh mục sp trang chủ
-Route::get('/danh-muc-san-pham/{category_id}','App\Http\Controllers\CategoryProduct@show_category_home');
+Route::get('/danh-muc-san-pham/{category_id}','App\Http\Controllers\CategoryProduct@show_category_home')->name('danh-muc-san-pham');
 Route::get('/thuong-hieu-san-pham/{brand_id}','App\Http\Controllers\BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','App\Http\Controllers\ProductController@details_product');
 

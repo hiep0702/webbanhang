@@ -12,17 +12,10 @@
               echo $message;
               Session::put('message',null);
           }
-
-
       ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th>Hình sản phẩm</th>
@@ -36,7 +29,6 @@
         <tbody>
           @foreach($all_product as $key =>$pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->product_name}}</td>
             <td>{{$pro->product_price}}</td>
             <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100"></td>
@@ -75,17 +67,8 @@
       </table>
     </div>
     <footer class="panel-footer">
-      <div class="row">
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
+      <div style="text-align: center;">
+        {{ $all_product->links() }}
       </div>
     </footer>
   </div>

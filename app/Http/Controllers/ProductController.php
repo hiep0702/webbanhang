@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
+use App\Http\Requests\CreateProduct;
+use App\Http\Requests\UpdateProduct;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -30,11 +32,11 @@ class ProductController extends Controller
         $this->AuthLogin();
         $all_product=DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderby('tbl_product.product_id','desc')->get();
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderby('tbl_product.product_id','desc')->paginate(4);
         $manager_product=view('admin.all_product')->with('all_product',$all_product);
          return view('admin_layout')->with('admin.all_product',$manager_product);
     }
-    public function save_product(Request $request){
+    public function save_product(CreateProduct $request){
         $this->AuthLogin();
         $data=array();
         $data['product_name']=$request->product_name;
@@ -87,7 +89,7 @@ class ProductController extends Controller
         $manager_product=view('admin.edit_product')->with('edit_product',$edit_product)->with('cate_product',$cate_product)->with('brand_product',$brand_product);
          return view('admin_layout')->with('admin.edit_product',$manager_product);
     }
-     public function update_product(Request $request,$product_id){
+     public function update_product(UpdateProduct $request,$product_id){
         $this->AuthLogin();
         $data=array();
         $data['product_name']=$request->product_name;
@@ -97,7 +99,6 @@ class ProductController extends Controller
         $data['category_id']=$request->product_cate;
         $data['brand_id']=$request->product_brand;   
         $data['product_status']=$request->product_status;
-        // $data['product_image']=$request->product_status;
         $get_image=$request->file('product_image');
         if($get_image){
             $get_name_image=$get_image->getClientOriginalName();

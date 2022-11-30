@@ -12,9 +12,6 @@
 
                 <?php
                 $content = Cart::content();
-                // echo "<pre>";
-                // print_r($content);
-                // echo "</pre>";
                 ?>
                 <table class="table table-condensed">
                     <thead>
@@ -38,7 +35,6 @@
                                 </td>
                                 <td class="cart_description">
                                     <h4><a href="">{{ $v_content->name }}</a></h4>
-                                    <p>Web ID: 1089772</p>
                                 </td>
                                 <td class="cart_price">
                                     <p>{{ number_format($v_content->price) . ' ' . 'VNĐ' }}</p>
