@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;

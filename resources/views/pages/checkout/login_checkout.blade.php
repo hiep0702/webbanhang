@@ -21,21 +21,21 @@
                                 ?>
                             </div>
                             <div>
-                                <input type="text" name="customer_email" placeholder="Tài khoản" />
                                 @error('customer_email')
-                                    <span style="color: red; width: 100%">{{ $message }}</span>
+                                <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="text" name="customer_email" placeholder="Tài khoản" />
                             </div>
                             <div>
-                                <input type="password" name="customer_password" placeholder="Password" />
                                 @error('customer_password')
-                                    <span style="color: red; width: 100%">{{ $message }}</span>
+                                <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="password" name="customer_password" placeholder="Password" />
                             </div>
-                            <span>
+                            {{-- <span>
                                 <input type="checkbox" class="checkbox">
                                 Ghi nhớ đăng nhập
-                            </span>
+                            </span> --}}
                             <button type="submit" class="btn btn-default">Đăng nhập</button>
                         </form>
                     </div>
@@ -51,34 +51,34 @@
                         <form action="{{ URL::to('/add-customer') }}" method="POST">
                             {{ csrf_field() }}
                             <div>
-                                <input type="text" name="customer_name" placeholder="Họ và tên" />
                                 @error('customer_name')
                                     <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="text" name="customer_name" placeholder="Họ và tên" />
                             </div>
                             <div>
-                                <input type="text" name="customer_email" placeholder="Địa chỉ email" />
                                 @error('customer_email')
                                     <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="text" name="customer_email" placeholder="Địa chỉ email" />                                
                             </div>
                             <div>
-                                <input type="password" name="customer_password" placeholder="Mật khẩu" />
                                 @error('customer_password')
                                     <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="password" name="customer_password" placeholder="Mật khẩu" />                               
                             </div>
                             <div>
-                                <input type="text" name="customer_address" placeholder="Địa chỉ" />
                                 @error('customer_address')
-                                    <span style="color: red; width: 100%">{{ $message }}</span>
+                                <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="text" name="customer_address" placeholder="Địa chỉ" />
                             </div>
                             <div>
-                                <input type="text" name="customer_phone" placeholder="Phone" />
                                 @error('customer_phone')
-                                    <span style="color: red; width: 100%">{{ $message }}</span>
+                                <span style="color: red; width: 100%">{{ $message }}</span>
                                 @enderror
+                                <input type="text" name="customer_phone" placeholder="Phone" />
                             </div>
                             <button type="submit" class="btn btn-default">Đăng ký</button>
                         </form>

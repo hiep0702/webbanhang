@@ -43,7 +43,7 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{ URL::to('/trang-chu') }}" class="active">Trang chủ</a></li>
+                                <li><div><a href="{{ URL::to('/trang-chu') }}">Trang chủ</a></div></li>
                                 <li>
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,26 +51,26 @@
                                         </a>
                                         <div class="dropdown-menu">
                                             @foreach ($category as $key => $cate)
-                                                <p><a class="dropdown-item"
+                                                <p><a class="dropdown-item list-product"
                                                     href="{{ URL::to('/danh-muc-san-pham/' . $cate->category_id) }}">{{ $cate->category_name }}</a></p>
                                             @endforeach
 
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="{{ URL::to('/show-cart') }}">Giỏ hàng</a></li>
-                                <li><a href="{{ URL::to('/lien-he') }}">Liên hệ</a></li>
+                                <li><div><a href="{{ URL::to('/show-cart') }}">Giỏ hàng</a></div></li>
+                                <li><div><a href="{{ URL::to('/lien-he') }}">Liên hệ</a></div></li>
                                 <?php  
                                     $customer_id=Session::get('customer_id');
                                     if ($customer_id!=NULL) {       
                                 ?>
-                                <li><a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-lock"></i> Đăng
-                                        xuất</a></li>
+                                <li><div><a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-lock"></i> Đăng
+                                    xuất</a></div></li>
                                 <?php  
 
                                 }else{
                                 ?>
-                                <li><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a>
+                                <li><div><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></div>
                                 </li>
                                 <?php  
                                 }
