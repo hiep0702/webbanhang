@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Cart;
 use App\Http\Requests\CreateCustomer;
 use App\Http\Requests\LoginCustomer;
+use App\Http\Requests\SaveCustomerRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -58,7 +59,7 @@ class CheckoutController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status', '0')->orderby('brand_id', 'desc')->get();
         return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product);
     }
-    public function save_checkout_customer(Request $request)
+    public function save_checkout_customer(SaveCustomerRequest $request)
     {
         $data = array();
         $data['shipping_name'] = $request->shipping_name;

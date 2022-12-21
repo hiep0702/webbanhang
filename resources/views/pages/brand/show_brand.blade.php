@@ -15,8 +15,8 @@
                                     height="200" alt="" />
                                 <h2>{{ number_format($product->product_price) . ' ' . 'VNĐ' }}</h2>
                                 <p>{{ $product->product_name }}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i
-                                        class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                                {{-- <a href="#" class="btn btn-default add-to-cart"><i
+                                        class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a> --}}
                             </div>
                         </div>
                     </div>

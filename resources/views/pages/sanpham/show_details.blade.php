@@ -77,25 +77,19 @@
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
+								<a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}">
 								<img src="{{URL::to('/public/uploads/product/'.$lienquan->product_image)}} "/>
 								<h2>{{number_format($lienquan->product_price).' '.'VNĐ'}}</h2>
 								<p>{{$lienquan->product_name}}</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+								</a>
+								{{-- <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button> --}}
 							</div>
 						</div>
 					</div>
 				</div>
 				@endforeach		
-			</div>
-		
-			
+			</div>	
 		</div>
-		 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-			<i class="fa fa-angle-left"></i>
-		  </a>
-		  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-			<i class="fa fa-angle-right"></i>
-		  </a>			
 	</div>
 </div><!--/recommended_items-->
 @endsection
