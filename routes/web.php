@@ -77,6 +77,7 @@ Route::get('/unactive-product/{product_id}','App\Http\Controllers\ProductControl
 Route::get('/active-product/{product_id}','App\Http\Controllers\ProductController@active_product');
 Route::post('/save-product','App\Http\Controllers\ProductController@save_product');
 Route::post('/update-product/{product_id}','App\Http\Controllers\ProductController@update_product');
+Route::get('/allProduct','App\Http\Controllers\ProductController@allProduct')->name('allProduct');
 // card
 Route::post('/update-cart-quantity','App\Http\Controllers\CartController@update_cart_quantity');
 Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
