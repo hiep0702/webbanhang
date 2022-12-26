@@ -28,6 +28,7 @@ class UpdateProduct extends FormRequest
             'product_price' => 'required|numeric',
             'product_desc' => 'required',
             'product_content' => 'required',
+            'product_quantity' => 'required|numeric',
         ];
     }
 
@@ -41,6 +42,8 @@ class UpdateProduct extends FormRequest
             'product_price.numeric' => 'Giá sản phẩm phải là số',
             'product_desc.required' => 'Mô tả sản phẩm không được để trống',
             'product_content.required' => 'Nội dung sản phẩm không được để trống',
+            'product_quantity.required' => 'Số lượng không được để trống',
+            'product_quantity.numeric' => 'Số lượng phải là số',
         ];
     }
 }
