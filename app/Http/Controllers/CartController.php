@@ -61,19 +61,27 @@ class CartController extends Controller
 
         $productId=$request->productid_hidden;
         $quantity=$request->qty;
-        $product_info=DB::table('tbl_product')->where('product_id',$productId)->first();
-        
-        $data['id']=$product_info->product_id;
-        $data['qty']=$quantity;
-        $data['name']=$product_info->product_name;
-        $data['price']=$product_info->product_price;
-        $data['weight']=$product_info->product_price;
-        $data['options']['image']=$product_info->product_image;
-        
-        Cart::add($data);
-        // Cart::destroy();
+        $product_info = DB::table('tbl_product')->where('product_id',$productId)->first();
 
-        return Redirect::to('/show-cart');
+        if($quantity <= $product_info->product_quantity)
+        {
+            $data['id']=$product_info->product_id;
+            $data['qty']=$quantity;
+            $data['name']=$product_info->product_name;
+            $data['price']=$product_info->product_price;
+            $data['weight']=$product_info->product_price;
+            $data['options']['image']=$product_info->product_image;
+            
+            DB::table('tbl_product')->where('product_id',$productId)->update(['product_quantity' => $product_info->product_quantity - $quantity]);
+            Cart::add($data);
+    
+            return Redirect::to('/show-cart');
+        }else{
+            Session::put('message','Sản phẩm trong kho không đủ');
+            return redirect()->route('details-product', [$productId]);
+        }
+        
+        
  
     }
     public function show_cart(){

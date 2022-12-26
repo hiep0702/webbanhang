@@ -23,7 +23,14 @@
             <!--/product-information-->
             <img src="images/product-details/new.jpg" class="newarrival" alt="" />
             <h2>{{$value->product_name}}</h2>
-            <p>Mã ID: {{$value->product_id}}</p>
+            <?php
+                     $message = Session::get('message');
+                     if ($message) {
+                         echo $message;
+                         Session::put('message', null);
+                     }
+                     
+                     ?>
             <img src="images/product-details/rating.png" alt="" />
 
 
@@ -41,7 +48,7 @@
                     </button>
                 </span>
             </form>
-            <p><b>Tình trạng:</b> Còn hàng</p>
+            <p><b>Số lượng:</b> {{$value->product_quantity}}</p>
             <p><b>Thương hiệu:</b> {{$value->brand_name}}</p>
             <p><b>Danh mục:</b> {{$value->category_name}}</p>
             <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>

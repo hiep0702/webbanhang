@@ -36,11 +36,13 @@ class ProductController extends Controller
         $manager_product=view('admin.all_product')->with('all_product',$all_product);
          return view('admin_layout')->with('admin.all_product',$manager_product);
     }
+
     public function save_product(CreateProduct $request){
         $this->AuthLogin();
         $data=array();
         $data['product_name']=$request->product_name;
         $data['product_price']=$request->product_price;
+        $data['product_quantity']=$request->product_quantity;
         $data['product_desc']=$request->product_desc;
         $data['product_content']=$request->product_content;
         $data['category_id']=$request->product_cate;
@@ -94,6 +96,7 @@ class ProductController extends Controller
         $data=array();
         $data['product_name']=$request->product_name;
         $data['product_price']=$request->product_price;
+        $data['product_quantity']=$request->product_quantity;
         $data['product_desc']=$request->product_desc;
         $data['product_content']=$request->product_content;
         $data['category_id']=$request->product_cate;
