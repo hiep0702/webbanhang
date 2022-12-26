@@ -46,7 +46,7 @@
                                 <li>
                                     <div><a href="{{ URL::to('/trang-chu') }}">Trang chủ</a></div>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <div class="btn-group">
                                         <a class="sanpham" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -62,6 +62,9 @@
 
                                         </div>
                                     </div>
+                                </li> --}}
+                                <li>
+                                    <div><a href="{{ URL::to('/allProduct') }}">Sản phẩm</a></div>
                                 </li>
                                 <li>
                                     <div><a href="{{ URL::to('/show-cart') }}">Giỏ hàng</a></div>

@@ -134,9 +134,18 @@ class ProductController extends Controller
 
             $category_id=$value->category_id;
         }
-         $related_product=DB::table('tbl_product')
+        $related_product=DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
         return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product);
+    }
+
+    public function allProduct()
+    {
+        $allProduct = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->paginate(6);
+        $cate_product=DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        $brand_product=DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+        
+        return view('pages.sanpham.allProduct')->with('category',$cate_product)->with('brand',$brand_product)->with('allProduct', $allProduct);
     }
 }
