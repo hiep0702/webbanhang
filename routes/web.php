@@ -102,3 +102,4 @@ Route::post('/save-checkout-customer','App\Http\Controllers\CheckoutController@s
 Route::get('/manager-order','App\Http\Controllers\CheckoutController@manager_order');
 Route::get('/view-order/{orderId}','App\Http\Controllers\CheckoutController@view_order');
 Route::get('/delete-order/{orderId}','App\Http\Controllers\CheckoutController@delete_order');
+Route::post('/export','App\Http\Controllers\CheckoutController@export')->name('export');
