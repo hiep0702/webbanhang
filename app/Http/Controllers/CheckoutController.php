@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrderExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cart;
@@ -10,6 +11,7 @@ use App\Http\Requests\LoginCustomer;
 use App\Http\Requests\SaveCustomerRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Excel;
 
 session_start();
 class CheckoutController extends Controller
@@ -33,6 +35,12 @@ class CheckoutController extends Controller
             ->where('tbl_order.order_id', $orderId)->get();
         return view('admin.view_order', compact('order_by_id'));
     }
+
+    public function export()
+    {
+        return Excel::download(new OrderExport, 'Thông tin đơn hàng.xlsx');
+    }
+
     public function login_checkout()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '0')->orderby('category_id', 'desc')->get();
