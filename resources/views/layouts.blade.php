@@ -293,9 +293,7 @@
                     {{-- <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
                     <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p> --}}
                     <p>© 2022 Visitors. All rights reserved | Design by <a target="_blank"
-                            href="https://www.facebook.com/trantuanhiep07">Trần Tuấn Hiệp</a> vs
-                        <a target="_blank" href="https://www.facebook.com/profile.php?id=100027648406951">Tạ Văn
-                            Quyết</a>
+                            href="https://www.facebook.com/trantuanhiep07">Trần Tuấn Hiệp</a>
                     </p>
                 </div>
             </div>

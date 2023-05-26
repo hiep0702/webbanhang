@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Exports\OrderExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Cart;
 use App\Http\Requests\CreateCustomer;
 use App\Http\Requests\LoginCustomer;
 use App\Http\Requests\SaveCustomerRequest;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 session_start();
 class CheckoutController extends Controller
@@ -115,6 +115,7 @@ class CheckoutController extends Controller
             $order_d_data['product_sales_quantity'] = $v_content->qty;
             DB::table('tbl_order_details')->insert($order_d_data);
         }
+
         if ($data['payment_method'] == 1) {
             echo "Thanh toán thẻ ATM";
             echo "</br>";

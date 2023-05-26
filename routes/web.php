@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cart;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,10 +36,12 @@ Route::get('/chi-tiet-san-pham/{product_id}','App\Http\Controllers\ProductContro
 
 
 //backend
-Route::get('/admin','App\Http\Controllers\AdminController@index');
+Route::get('/admin','App\Http\Controllers\AdminController@index')->name('admin-index');
+Route::get('/admin-register','App\Http\Controllers\AdminController@register')->name('admin-register');
 Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard')->name('dashboard');
 Route::get('/logout','App\Http\Controllers\AdminController@logout');
 Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+Route::post('/admin-signup','App\Http\Controllers\AdminController@signup');
 
 //category product
 Route::get('/add-category-product','App\Http\Controllers\CategoryProduct@add_category_product');
@@ -103,3 +108,21 @@ Route::get('/manager-order','App\Http\Controllers\CheckoutController@manager_ord
 Route::get('/view-order/{orderId}','App\Http\Controllers\CheckoutController@view_order');
 Route::get('/delete-order/{orderId}','App\Http\Controllers\CheckoutController@delete_order');
 Route::post('/export','App\Http\Controllers\CheckoutController@export')->name('export');
+
+//mail verify
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+

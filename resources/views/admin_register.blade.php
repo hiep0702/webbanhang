@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-
 <head>
     <title>admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords"
-        content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- bootstrap-css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -28,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <div class="log-w3">
         <div class="w3layouts-main">
-            <h2>Đăng nhập</h2>
+            <h2>Đăng kí</h2>
             <?php
             $message = Session::get('message');
             if ($message) {
@@ -37,27 +33,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
             
             ?>
-            <form action="{{ URL::to('/admin-dashboard') }}" method="post">
+            <form action="{{ URL::to('/admin-signup') }}" method="post">
                 {{ csrf_field() }}
                 <div>
-                    <input class="ggg" name="admin_email" placeholder="E-MAIL" type="email">
-                    @error('admin_email')
-                        <span style="color: red; width: 100%">{{ $message }}</span>
+                    <label for="">Họ tên:</label>
+                    <input class="ggg" name="admin_name" placeholder="Nhập họ và tên ...">
+                    @error('admin_name')
+                        <i style="color: red; width: 100%">{{ $message }}</i>
                     @enderror
                 </div>
                 <div>
-                    <input type="password" class="ggg" name="admin_password" placeholder="PASSWORD">
+                    <label for="">Email:</label>
+                    <input class="ggg" name="admin_email" placeholder="Nhập email ..." type="email">
+                    @error('admin_email')
+                        <i style="color: red; width: 100%">{{ $message }}</i>
+                    @enderror
+                </div>
+                <div>
+                    <label for="">Mật khẩu:</label>
+                    <input type="password" class="ggg" name="admin_password" placeholder="Nhập mật khẩu ...">
                     @error('admin_password')
-                        <span style="color: red; width: 100%">{{ $message }}</span>
+                        <i style="color: red; width: 100%">{{ $message }}</i>
+                    @enderror
+                </div>
+                <div>
+                    <label for="">Số điện thoại:</label>
+                    <input class="ggg" name="admin_phone" placeholder="Nhập số điện thoại ..." type="">
+                    @error('admin_phone')
+                        <i style="color: red; width: 100%">{{ $message }}</i>
                     @enderror
                 </div>
                 <div class="clearfix"></div>
-                <input type="submit" value="Đăng nhập" name="login">
+                <input type="submit" value="Đăng kí" name="register">
                 <div>
-                    <a style="color: revert;margin-left: 45px;" href="admin-register">Bạn chưa có tài khoản? Click vào đây để tạo tài khoản</a>
+                    <a style="color: revert;margin-left: 150px;" href="{{ route('admin-index') }}">Bạn đã có tài khoản?</a>
                 </div>
             </form>
-            <!-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> -->
         </div>
     </div>
     <script src="{{ asset('public/backend/js/bootstrap.js') }}"></script>

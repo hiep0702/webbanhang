@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
+use App\Http\Requests\AdminRegisterRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -21,13 +22,16 @@ class AdminController extends Controller
             return Redirect::to('admin')->send();
         }
     }
+
     public function index(){
         return view('admin_login');
     }
+
     public function show_dashboard(){
         $this->AuthLogin();
         return view('admin.dashboard');
     }
+
     public function dashboard(LoginRequest $request){
         $admin_email=$request->admin_email;
         $admin_password=md5($request->admin_password);
@@ -41,10 +45,30 @@ class AdminController extends Controller
             return Redirect::to('/admin');
         }
     }
+
     public function logout(){
         $this->AuthLogin();
         Session::put('admin_name',null);
         Session::put('admin_id',null);
         return Redirect::to('/admin');
+    }
+
+    public function register()
+    {
+        return view('admin_register');
+    }
+
+    public function signup(AdminRegisterRequest $request)
+    {
+        // dd(now());
+        DB::table('tbl_admin')->insert([
+            'admin_name' => $request->admin_name,
+            'admin_email' => $request->admin_email,
+            'admin_password' => md5($request->admin_password),
+            'admin_phone' => $request->admin_phone,
+            'created_at' => now()
+        ]);
+
+        return Redirect::to('/dashboard');
     }
 }
