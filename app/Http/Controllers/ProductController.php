@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests;
 use App\Http\Requests\CreateProduct;
 use App\Http\Requests\UpdateProduct;
 use Illuminate\Support\Facades\Session;
@@ -123,7 +121,7 @@ class ProductController extends Controller
     public function delete_product($product_id){
         $this->AuthLogin();
         Db::table('tbl_product')->where('product_id',$product_id)->delete();
-        Session::put('message','Xóa thương hiệu sản phẩm thành công');
+        Session::put('message','Xóa sản phẩm thành công');
         return Redirect::to('all-product');
     }
     //end admin page

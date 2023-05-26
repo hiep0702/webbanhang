@@ -170,8 +170,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer -->
 		  <div class="footer">
 			<div class="wthree-copyright">
-                <p>© 2022 Visitors. All rights reserved | Design by <a target="_blank" href="https://www.facebook.com/trantuanhiep07">Trần Tuấn Hiệp</a> vs
-                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100027648406951">Tạ Văn Quyết</a></p>
+                <p>© 2022 Visitors. All rights reserved | Design by <a target="_blank" href="https://www.facebook.com/trantuanhiep07">Trần Tuấn Hiệp</a>
+                </p>
             </div>
 		  </div>
   <!-- / footer -->

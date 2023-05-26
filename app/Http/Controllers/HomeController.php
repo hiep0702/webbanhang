@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Mail;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Mail;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 class HomeController extends Controller
 {
     public function send_mail(){
-        $to_name= 'hay';
+        $to_name= 'hiep';
         $to_email= "tuanhiep070201@gmail.com";
         $data= array("name"=>"Mail từ tài khoản khách hàng","body"=>"Mail gửi ề vấn đề hàng hóa");
         Mail::send('pages.send_mail',$data,function($message) use($to_name,$to_email){

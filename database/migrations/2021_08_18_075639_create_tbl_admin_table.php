@@ -16,6 +16,7 @@ class CreateTblAdminTable extends Migration
         Schema::create('tbl_admin', function (Blueprint $table) {
             $table->increments('admin_id');
             $table->string('admin_email',100);
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('admin_password');
             $table->string('admin_name');
             $table->string('admin_phone');
